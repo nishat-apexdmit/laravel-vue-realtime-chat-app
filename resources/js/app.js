@@ -42,6 +42,12 @@ const app = new Vue({
                 this.chats = response.data;
             });
 
+            Echo.private('Chat.' + friendId + '.' + userId)
+                .listen('BroadcastChat', (e) => {
+                    document.getElementById('ChatAudio').play();
+                    this.chats.push(e.chat);
+                });
+
         }
 
     }

@@ -2,6 +2,10 @@
 
 @section('content')
 
+<audio id="ChatAudio">
+    <source src="{{ asset('sounds/chat.mp3') }}">
+</audio>
+
 <meta name="friendId" content="{{ $friend->id }}">
 
 <div class="container">
