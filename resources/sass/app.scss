@@ -1,15 +1,8 @@
-/* Uncomment if you'd like to use Bulma's initial vars here (e.g. $white, $black-ter, etc.) */
-//@import "~bulma/sass/utilities/initial-variables";
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-/* Default font */
-$family-sans-serif: "Nunito",
-sans-serif;
+// Variables
+@import 'variables';
 
-/* Body background color */
-$body-background-color: #f8f8f8;
-
-/* Import Bulma */
-@import "~bulma/bulma";
-
-// font awesome
-@import "node_modules/font-awesome/scss/font-awesome.scss";
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';

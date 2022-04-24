@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="@stack('html-class')">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="userId" content="{{ Auth::check() ? Auth::user()->id : 'null' }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -15,21 +17,27 @@
     {{-- Fonts --}}
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+
 
     {{-- Styles --}}
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     @stack('head-after')
 </head>
+
 <body>
 
-<div id="app">
+    <div id="app">
 
-    @yield('content')
+        @yield('content')
 
-</div>
+    </div>
 
-@stack('bottom')
+    @stack('bottom')
 
 </body>
+{{-- js --}}
+<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+
 </html>
