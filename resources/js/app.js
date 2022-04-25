@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('chat-component', require('./components/ChatComponent.vue').default);
 Vue.component('chat-composer', require('./components/ChatComposer.vue').default);
+Vue.component('online-user', require('./components/OnlineUser.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,6 +33,7 @@ const app = new Vue({
     el: '#app',
     data: {
         chats: '',
+        onlineUsers: ''
     },
     created() {
         const userId = $('meta[name="userId"]').attr('content');
@@ -48,6 +50,20 @@ const app = new Vue({
                     this.chats.push(e.chat);
                 });
 
+        }
+
+
+        if (userId != 'null') {
+            Echo.join('Online')
+                .here((users) => {
+                    this.onlineUsers = users;
+                })
+                .joining((user) => {
+                    this.onlineUsers.push(user);
+                })
+                .leaving((user) => {
+                    this.onlineUsers = this.onlineUsers.filter((u) => { u != user });
+                });
         }
 
     }
